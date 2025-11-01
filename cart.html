@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+  <h1>Your Cart</h1>
+  <div id="cartContainer"></div>
+  <button onclick="window.location.href='lo.html'">⬅️ Back to Menu</button>
+
+  <script>
+    const cartContainer = document.getElementById("cartContainer");
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+      cartContainer.innerHTML = "<p>🛒 Your cart is empty.</p>";
+    } else {
+      cart.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <h3>${item.name}</h3>
+          <p>₹${item.price}</p>
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+        cartContainer.appendChild(div);
+      });
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      location.reload();
+    }
+  </script>
+</body>
+</html>

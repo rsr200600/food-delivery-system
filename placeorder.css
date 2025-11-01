@@ -1,0 +1,37 @@
+body {
+  background-image: url("background4.png");
+  background-size: cover;        /* ✅ Makes the image cover the full page */
+  background-repeat: no-repeat;  /* ✅ Prevents image repetition */
+  background-position: center;   /* ✅ Centers the image */
+  background-attachment: fixed;  /* ✅ Keeps image fixed when scrolling */
+  text-align: center;
+  font-family: 'Poppins', sans-serif; /* Optional – looks nice */
+  color: white;                  /* Optional – makes text readable */
+}
+h1{
+   color:green;
+   text-align: center;
+}
+.firstbtn{
+    background-color:aqua;
+    color: black;
+    margin: 30px;
+    text-align: center;
+    border-radius: 5px;
+    width:  50%;
+    height: 60px;
+    
+}
+.secondbtn{
+    background-color :aqua;
+    color: black;
+    margin: 30px;
+    text-align: center;
+    border-radius: 5px;
+    width: 50%;
+    height: 60px;
+   
+}
+p{
+   text-align: center;
+}

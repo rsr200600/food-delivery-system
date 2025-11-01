@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Orders</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+  <h1>Your Orders</h1>
+  <div id="orderContainer"></div>
+  <button onclick="window.location.href='lo.html'">⬅️ Back to Menu</button>
+
+  <script>
+    const currentUser = localStorage.getItem("currentUser");
+    const orderContainer = document.getElementById("orderContainer");
+
+    if (!currentUser) {
+      orderContainer.innerHTML = "<p>⚠️ Please login to view your orders.</p>";
+    } else {
+      const allOrders = JSON.parse(localStorage.getItem("userOrders")) || [];
+      const user = allOrders.find(u => u.email === currentUser);
+
+      if (!user || user.orders.length === 0) {
+        orderContainer.innerHTML = "<p>📦 You haven't placed any orders yet.</p>";
+      } else {
+        user.orders.forEach(order => {
+          const div = document.createElement("div");
+          div.className = "order-item";
+          div.innerHTML = `
+            <h3>${order.name}</h3>
+            <p>₹${order.price}</p>
+            <small>🕒 ${order.time}</small>
+          `;
+          orderContainer.appendChild(div);
+        });
+      }
+    }
+  </script>
+</body>
+</html>

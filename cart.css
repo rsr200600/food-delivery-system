@@ -1,0 +1,133 @@
+/* ===== General Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== Body Styling ===== */
+body {
+  background-color: #f8f9fa;
+  color: #1e293b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===== Page Title ===== */
+h1 {
+  margin-bottom: 20px;
+  color: #0d9488; /* teal-ish primary color */
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* ===== Containers ===== */
+#cartContainer,
+#orderContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* ===== Item Cards ===== */
+.cart-item,
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.cart-item:hover,
+.order-item:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== Item Info ===== */
+.cart-item h3,
+.order-item h3 {
+  font-size: 1.2rem;
+  color: #0f172a;
+}
+
+.cart-item p,
+.order-item p {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+/* ===== Order Time ===== */
+.order-item small {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-left: 10px;
+}
+
+/* ===== Remove Button ===== */
+.cart-item button {
+  background-color: #ef4444; /* red */
+  color: #ffffff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.cart-item button:hover {
+  background-color: #dc2626;
+}
+
+/* ===== Back Button ===== */
+button[onclick] {
+  margin-top: 20px;
+  background-color: #0d9488;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+button[onclick]:hover {
+  background-color: #0f766e;
+}
+
+/* ===== Empty State ===== */
+#cartContainer p,
+#orderContainer p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #64748b;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 480px) {
+  .cart-item,
+  .order-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-item button {
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  .order-item small {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}

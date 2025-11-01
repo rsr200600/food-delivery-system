@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Place Order</title>
+  <link rel="stylesheet" href="placeorder.css" />
+</head>
+<body>
+  <br/><br/><br/><h1>You Want To Place This Order Or Add To Cart  ?</h1><br/><br/><br/>
+ 
+    <button class="firstbtn" id="yesBtn"><h2>Yes! Place Order</h2></button>
+    <button class="secondbtn" id="noBtn"><h2>No! Add to Cart</h2></button>
+  
+
+  <script>
+    const item = JSON.parse(localStorage.getItem("selectedItem"));
+    const currentUser = localStorage.getItem("currentUser");
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      if (!currentUser) {
+        alert("⚠️ Please login first!");
+        window.location.href = "index.html";
+        return;
+      }
+
+      if (item) {
+        let userOrders = JSON.parse(localStorage.getItem("userOrders")) || [];
+        let existing = userOrders.find(u => u.email === currentUser);
+
+        if (existing) {
+          existing.orders.push({
+            name: item.name,
+            price: item.price,
+            time: new Date().toLocaleString()
+          });
+        } else {
+          userOrders.push({
+            email: currentUser,
+            orders: [
+              { name: item.name, price: item.price, time: new Date().toLocaleString() }
+            ]
+          });
+        }
+
+        localStorage.setItem("userOrders", JSON.stringify(userOrders));
+        alert("✅ Your order has been placed successfully!");
+        localStorage.removeItem("selectedItem");
+        window.location.href = "lo.html";
+      }
+    });
+
+    document.getElementById("noBtn").addEventListener("click", () => {
+      if (!currentUser) {
+        alert("⚠️ Please login first!");
+        window.location.href = "index.html";
+        return;
+      }
+
+      if (item) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("🛒 Added to cart successfully!");
+        localStorage.removeItem("selectedItem");
+        window.location.href = "lo.html";
+      }
+    });
+  </script>
+</body>
+</html>
